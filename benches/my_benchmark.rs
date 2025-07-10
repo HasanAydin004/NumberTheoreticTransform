@@ -18,8 +18,5 @@ fn compare_ntt_algorithms(c: &mut Criterion) {
 
     group.finish();
 }
-
-
-
 criterion_group!(benches, compare_ntt_algorithms);
 criterion_main!(benches);

@@ -137,7 +137,6 @@ pub fn modular_inverse(a: i128, modulus: i128) -> i128 {
     }
     (x % modulus + modulus) % modulus
 }
-
 //Extended Euclidean Algorithm: returns gcd(a, b) and Bézout coefficients (x, y)
 fn compute_extended_gcd(a: i128, b: i128) -> (i128, i128, i128) {
     if b == 0 {
