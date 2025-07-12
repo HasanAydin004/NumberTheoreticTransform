@@ -2,11 +2,13 @@ use criterion::{criterion_group, criterion_main, Criterion};
 use number_theoretic_transform::{forward_ntt_recursive,ntt_based_on_omega};
 
 fn compare_ntt_algorithms(c: &mut Criterion) {
-    let input: Vec<i128> = (0..256).collect();
+    let input: Vec<i128> = (0..128).collect();
     let root = 17;
     let modulus = 3329;
 
     let mut group = c.benchmark_group("NTT Comparison");
+    group.sample_size(100);
+    group.measurement_time(std::time::Duration::from_secs(10));
 
     group.bench_function("recursive NTT radix 2", |b| {
         b.iter(|| forward_ntt_recursive(&input, root, modulus))
