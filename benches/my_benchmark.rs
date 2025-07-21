@@ -8,7 +8,7 @@ fn compare_ntt_algorithms(c: &mut Criterion) {
 
     let mut group = c.benchmark_group("NTT Comparison");
     group.sample_size(100);
-    group.measurement_time(std::time::Duration::from_secs(10));
+    group.measurement_time(std::time::Duration::from_secs(5));
 
     group.bench_function("recursive NTT radix 2", |b| {
         b.iter(|| forward_ntt_recursive(&input, root, modulus))
