@@ -14,7 +14,7 @@
 ///
 /// # Mathematische Grundlage:
 /// Die NTT entspricht der diskreten Fourier-Transformation über dem endlichen Ring Z_q:
-/// Âⱼ = Σᵢ aᵢ · ω^(i·j) mod q  (vgl. Abschnitt 3.2)
+/// Âⱼ = Σᵢ aᵢ · ω^(i·j) mod q(vgl. Abschnitt 3.2)
 pub fn forward_ntt_recursive(invec: &Vec<i128>, root: i128, modulus: i128) -> Vec<i128> {
     let n = invec.len();
 
@@ -67,7 +67,7 @@ pub fn forward_ntt_recursive(invec: &Vec<i128>, root: i128, modulus: i128) -> Ve
 
 
 
-/// Führt die **inverse Number-Theoretic Transform (INTT)** auf dem Eingabevektor `invec` aus.
+/// Führt die inverse Number-Theoretic Transform (INTT) auf dem Eingabevektor `invec` aus.
 ///
 /// Die Inverse-NTT berechnet das ursprüngliche Polynom zurück aus seinem Frequenzbereich.
 /// Dies geschieht in zwei Schritten:
@@ -80,7 +80,7 @@ pub fn forward_ntt_recursive(invec: &Vec<i128>, root: i128, modulus: i128) -> Ve
 /// Die INTT ist definiert als:
 ///     aᵢ = (1/n) * Σⱼ=0ⁿ⁻¹ Âⱼ · ω⁻ⁱʲ  mod q
 ///
-/// - `invec`: Transformierter Vektor Â im Frequenzbereich (z. B. Ergebnis der Vorwärts-NTT)
+/// - `invec`: Transformierter Vektor Â im Frequenzbereich (z.B. Ergebnis der Vorwärts-NTT)
 /// - `root`: Die ursprüngliche primitive n-te Einheitswurzel ω ∈ Z_q
 /// - `modulus`: Das verwendete q (typischerweise eine große Primzahl)
 ///
@@ -131,14 +131,14 @@ fn find_multiplicative_generator(totient: i128, modulus: i128) -> i128 {
 }
 
 /// Prüft, ob `val` ein primitiver Generator modulo `modulus` ist,
-/// d. h. ein Erzeuger der multiplikativen Gruppe Z*_q.
+/// d.h. ein Erzeuger der multiplikativen Gruppe Z*_q.
 ///
 /// Hintergrund:
 /// Ein Element `g` ∈ Z*_q ist genau dann ein primitiver Generator, wenn es Ordnung φ(q) = q−1 hat.
 /// Das bedeutet: Seine Potenzen durchlaufen alle invertierbaren Reste modulo q.
 ///
 /// Dafür müssen zwei Bedingungen erfüllt sein:
-/// 1. g^φ(q) ≡ 1 mod q       (Fermats kleiner Satz)
+/// 1. g^φ(q) ≡ 1 mod q (Fermats kleiner Satz)
 /// 2. Für alle Primfaktoren p von φ(q): g^(φ(q)/p) ≠ 1 mod q
 ///
 /// Diese Funktion wird bei der Suche nach einer primitiven Einheitswurzel verwendet (vgl. Abschnitt 2.3).
@@ -191,7 +191,7 @@ fn get_unique_prime_factors(mut n: i128) -> Vec<i128> {
         i += 1; // Nächster Kandidat
     }
 
-    // Falls nach der Schleife n > 1 ist, bleibt ein letzter Primfaktor übrig (z. B. eine große Primzahl)
+    // Falls nach der Schleife n > 1 ist, bleibt ein letzter Primfaktor übrig (z.B. eine große Primzahl)
     if n > 1 {
         result.push(n);
     }
